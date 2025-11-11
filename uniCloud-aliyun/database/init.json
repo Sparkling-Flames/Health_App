@@ -1,0 +1,114 @@
+{
+  "collections": [
+    {
+      "name": "messages",
+      "comment": "社区留言",
+      "schema": {
+        "bsonType": "object",
+        "required": ["content", "public", "createdAt", "clientId"],
+        "properties": {
+          "content": {"bsonType": "string", "minLength": 1, "maxLength": 1000},
+          "public": {"bsonType": "bool"},
+          "createdAt": {"bsonType": "long"},
+          "clientId": {"bsonType": "string"}
+        }
+      },
+      "indexes": [
+        {"name": "idx_createdAt", "key": {"createdAt": -1}},
+        {"name": "idx_public", "key": {"public": 1}}
+      ]
+    },
+    {
+      "name": "group",
+      "comment": "小组信息",
+      "schema": {
+        "bsonType": "object",
+        "required": ["leader", "member", "groupId", "createdAt"],
+        "properties": {
+          "leader": {"bsonType": "string", "maxLength": 50},
+          "info": {"bsonType": "string", "maxLength": 1000},
+          "member": {"bsonType": "int", "minimum": 1},
+          "groupId": {"bsonType": "int", "minimum": 1},
+          "createdAt": {"bsonType": "long"},
+          "clientId": {"bsonType": "string"}
+        }
+      },
+      "indexes": [
+        {"name": "uk_groupId", "key": {"groupId": 1}, "unique": true}
+      ]
+    },
+    {
+      "name": "form",
+      "comment": "小组成员报名",
+      "schema": {
+        "bsonType": "object",
+        "required": ["nickname", "isLeader", "groupId", "clientId"],
+        "properties": {
+          "nickname": {"bsonType": "string", "maxLength": 50},
+          "isLeader": {"bsonType": "bool"},
+          "info": {"bsonType": "string", "maxLength": 1000},
+          "groupId": {"bsonType": "int"},
+          "clientId": {"bsonType": "string"}
+        }
+      },
+      "indexes": [
+        {"name": "idx_groupId", "key": {"groupId": 1}}
+      ]
+    },
+    {
+      "name": "diet",
+      "comment": "饮食记录",
+      "schema": {
+        "bsonType": "object",
+        "required": ["food", "calories", "date", "clientId", "createdAt"],
+        "properties": {
+          "food": {"bsonType": "string", "maxLength": 100},
+          "calories": {"bsonType": "int", "minimum": 0},
+          "date": {"bsonType": "string", "description": "YYYY-MM-DD"},
+          "clientId": {"bsonType": "string"},
+          "createdAt": {"bsonType": "long"}
+        }
+      },
+      "indexes": [
+        {"name": "idx_client_date", "key": {"clientId": 1, "date": -1}}
+      ]
+    },
+    {
+      "name": "sport",
+      "comment": "运动记录",
+      "schema": {
+        "bsonType": "object",
+        "required": ["sport", "calories", "date", "clientId", "createdAt"],
+        "properties": {
+          "sport": {"bsonType": "string", "maxLength": 100},
+          "calories": {"bsonType": "int", "minimum": 0},
+          "date": {"bsonType": "string", "description": "YYYY-MM-DD"},
+          "clientId": {"bsonType": "string"},
+          "createdAt": {"bsonType": "long"}
+        }
+      },
+      "indexes": [
+        {"name": "idx_client_date", "key": {"clientId": 1, "date": -1}}
+      ]
+    },
+    {
+      "name": "report",
+      "comment": "周期报告",
+      "schema": {
+        "bsonType": "object",
+        "required": ["start", "end", "totalDiet", "totalSport", "clientId", "createdAt"],
+        "properties": {
+          "start": {"bsonType": "string"},
+          "end": {"bsonType": "string"},
+          "totalDiet": {"bsonType": "int", "minimum": 0},
+          "totalSport": {"bsonType": "int", "minimum": 0},
+          "clientId": {"bsonType": "string"},
+          "createdAt": {"bsonType": "long"}
+        }
+      },
+      "indexes": [
+        {"name": "idx_client_createdAt", "key": {"clientId": 1, "createdAt": -1}}
+      ]
+    }
+  ]
+}

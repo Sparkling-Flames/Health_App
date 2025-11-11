@@ -1,0 +1,1 @@
+<view class="p-3 data-v-a6ef5318"><view class="card data-v-a6ef5318"><input class="data-v-a6ef5318" placeholder="发布你的健康留言" value="{{a}}" bindinput="{{b}}"/><button class="mt-2 data-v-a6ef5318" bindtap="{{c}}">发布</button></view><view wx:for="{{d}}" wx:for-item="m" wx:key="b" class="mt-2 card data-v-a6ef5318"><view class="data-v-a6ef5318">{{m.a}}</view></view></view>

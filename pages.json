@@ -1,0 +1,46 @@
+{
+  "pages": [{
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "健康监控"
+      }
+    },
+    {
+      "path": "pages/diet/diet",
+      "style": {
+        "navigationBarTitleText": "饮食记录"
+      }
+    },
+    {
+      "path": "pages/sport/sport",
+      "style": {
+        "navigationBarTitleText": "运动记录"
+      }
+    },
+    {
+      "path": "pages/community/community",
+      "style": {
+        "navigationBarTitleText": "社区"
+      }
+    },
+    {
+      "path": "pages/group/group",
+      "style": {
+        "navigationBarTitleText": "小组"
+      }
+    },
+    {
+      "path": "pages/report/report",
+      "style": {
+        "navigationBarTitleText": "报告总结"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "健康监控",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {}
+}
