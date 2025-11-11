@@ -34,16 +34,7 @@
   - 你可以在 fun/functions/aiSummary.js 中接入阿里云百炼/通义千问的函数调用，返回文字分析。
   - 前端通过 reportService.aiSummary 获取结果并展示。
 
-## 迁移到 HBuilderX
-- 复制 apps/health-uniapp 整个目录到 HBuilderX 并作为项目打开
-- 打开 manifest 面板：
-  - 绑定 DCloud AppID（用于关联 uniCloud）。当前文件中的顶层 `appid` 为占位，绑定后会自动替换
-  - 微信小程序 AppID：已写入 `mp-weixin.appid = wxd69d0e6aea4600da`（如需更换在 manifest 面板修改）
-  - 确认使用 Vue 版本为 3
-- 关联/创建 uniCloud（阿里云）服务空间：HBuilderX 左侧 uniCloud 面板 → 关联服务空间
-- 右键上传部署云函数：`uniCloud-aliyun/cloudfunctions/fun`
-- 初始化数据库集合：在 `uniCloud-aliyun/database/init.json` 可作为结构参考，实际在控制台或 HBuilderX 数据库面板创建
-- 运行到微信开发者工具/H5 进行联调验证
+
 =======
 # Health_App
 >>>>>>> 089dbef4974efdc9709fe1e3cf09202ba06305dc
