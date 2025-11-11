@@ -12,7 +12,7 @@
 ## 目录结构
 - pages/* 页面（home/diet/sport/community/group/report）
 - services/api.js 前端服务封装（统一调用云函数/HTTP）
-- uniCloud-aliyun/cloudfunctions/fun 云函数聚合与模块
+- uniCloud-aliyun/cloudfunctions 云函数聚合与模块
 
 ## 云函数 API
 - message(action,publish|list)
