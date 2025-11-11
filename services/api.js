@@ -5,16 +5,18 @@ export function callApi({ api, data = {}, loading = false }) {
   if (loading) uni.showLoading({ title: '加载中' })
   return new Promise((resolve, reject) => {
     uniCloud.callFunction({
-      name: 'fun',
-      data: { api, args: data }
+      name: api,
+      data
     }).then(res => {
       if (loading) uni.hideLoading()
-      if (res.result && res.result.success) {
-        resolve(res.result.data)
-      } else {
-        uni.showToast({ title: res.result?.errorMessage || '错误', icon: 'none' })
-        reject(res.result?.errorMessage)
+      const r = res.result
+      if (r && typeof r === 'object' && 'success' in r) {
+        if (r.success) return resolve(r.data)
+        uni.showToast({ title: r.errorMessage || '错误', icon: 'none' })
+        return reject(r.errorMessage)
       }
+      // 兼容直接返回数据对象的云函数
+      resolve(r)
     }).catch(err => {
       if (loading) uni.hideLoading()
       uni.showToast({ title: '网络错误', icon: 'none' })
