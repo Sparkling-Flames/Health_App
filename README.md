@@ -1,3 +1,4 @@
+ HEAD
                               # health-uniapp
 
 基于 uni-app (Vue3) 的健康监控示例，包含：
@@ -43,3 +44,6 @@
 - 右键上传部署云函数：`uniCloud-aliyun/cloudfunctions/fun`
 - 初始化数据库集合：在 `uniCloud-aliyun/database/init.json` 可作为结构参考，实际在控制台或 HBuilderX 数据库面板创建
 - 运行到微信开发者工具/H5 进行联调验证
+=======
+# Health_App
+>>>>>>> 089dbef4974efdc9709fe1e3cf09202ba06305dc
