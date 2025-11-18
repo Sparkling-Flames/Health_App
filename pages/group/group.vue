@@ -2,61 +2,46 @@
   <view class="pd20 column gap">
     <view class="card" v-if="!groupId">
       <input class="input" v-model="form.nickname" placeholder="昵称" />
-      <textarea
-        class="input"
-        v-model="form.info"
-        placeholder="简介/目标"
-      ></textarea>
+      <textarea class="input" v-model="form.info" placeholder="简介/目标"></textarea>
       <button class="mgt20" @click="create">创建小组</button>
     </view>
     <view class="card" v-else>
       <view class="fs32 fwb">当前小组 #{{ groupId }}</view>
       <button class="mgt20" @click="loadMembers">刷新成员</button>
-      <view class="mgt10 c9" v-if="members.length"
-        >共 {{ members.length }} 人</view
-      >
+      <view class="mgt10 c9" v-if="members.length">共 {{ members.length }} 人</view>
       <view class="mgt20" v-for="u in members" :key="u._id">
         <view class="fs32">{{ u.nickname }}</view>
         <view class="c9 fs24">{{ u.isLeader ? "组长" : "成员" }}</view>
       </view>
     </view>
+
     <view class="card">
       <view class="fs32 fwb">我的资料</view>
       <input class="input" v-model="myProfile.nickname" placeholder="昵称" />
-      <textarea
-        class="input"
-        v-model="myProfile.info"
-        placeholder="个人简介"
-      ></textarea>
-      <button
-        class="mgt20"
-        :disabled="!groupId || profileSaving"
-        @click="saveProfile"
-      >
+      <textarea class="input" v-model="myProfile.info" placeholder="个人简介"></textarea>
+      <button class="mgt20" :disabled="!groupId || profileSaving" @click="saveProfile">
         {{ profileSaving ? "保存中..." : "保存资料" }}
       </button>
       <view class="tips" v-if="!groupId">加入或创建小组后可保存</view>
     </view>
+
     <view class="card">
       <view class="fs32 fwb">加入已有小组</view>
       <input class="input" v-model="joinId" placeholder="输入小组ID" />
       <input class="input" v-model="joinNickname" placeholder="你的昵称" />
       <button class="mgt20" @click="join">加入</button>
     </view>
+
     <view class="card">
       <view class="fs32 fwb">可加入小组</view>
       <button class="mgt20" @click="list">获取可加入小组列表</button>
-      <view
-        class="mt-2 link"
-        v-for="g in groups"
-        :key="g.groupId"
-        @click="quickJoin(g.groupId)"
-      >
+      <view class="mt-2 link" v-for="g in groups" :key="g.groupId" @click="quickJoin(g.groupId)">
         #{{ g.groupId }} {{ g.leader }} ({{ g.member || 1 }}人)
       </view>
     </view>
   </view>
 </template>
+
 <script setup>
 import { reactive, ref } from "vue";
 import { onShow } from "@dcloudio/uni-app";
@@ -185,6 +170,7 @@ const saveProfile = async () => {
 
 onShow(loadMyGroup);
 </script>
+
 <style scoped>
 .column.gap > .card + .card {
   margin-top: 20rpx;
