@@ -1,0 +1,12 @@
+[
+  {
+    "IndexName": "idx_client_createdAt",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "clientId", "Direction": "1", "Type": "varchar" },
+        { "Name": "createdAt", "Direction": "-1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

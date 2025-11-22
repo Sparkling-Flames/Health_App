@@ -1,0 +1,12 @@
+[
+  {
+    "IndexName": "idx_sport_records_user_recordedAt",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "userOpenId", "Direction": "1", "Type": "varchar" },
+        { "Name": "recordedAt", "Direction": "-1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

@@ -26,7 +26,14 @@ export function callApi({ api, data = {}, loading = false }) {
         reject(err);
       });
   });
-}
+};
+
+export const loginByOpenId = (payload) => {
+  return uniCloud.callFunction({
+    name: 'login',
+    data: payload
+  });
+};
 
 export const groupService = {
   getMyGroup() {

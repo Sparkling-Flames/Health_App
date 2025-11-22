@@ -1,0 +1,11 @@
+[
+  {
+    "IndexName": "uk_openid",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "openid", "Direction": "1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": true
+    }
+  }
+]
