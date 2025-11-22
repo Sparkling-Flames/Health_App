@@ -2,7 +2,10 @@
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 
 onLaunch(() => {
-  console.log("App Launch");
+  const cachedUser = uni.getStorageSync("userProfile");
+  if (!cachedUser || !cachedUser.openid) {
+    uni.reLaunch({ url: "/pages/login/login" });
+  }
 });
 
 onShow(() => {

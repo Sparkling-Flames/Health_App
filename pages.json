@@ -1,18 +1,45 @@
 {
-  "pages": [{
+  "pages": [
+    {
       "path": "pages/home/home",
       "style": {
         "navigationBarTitleText": "健康监控"
       }
     },
+    { 
+      "path": "pages/ai_analyse/ai_analyse", 
+      "style": { 
+        "navigationBarTitleText": "AI分析" } 
+    },
     {
-      "path": "pages/diet/diet",
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "default",
+        "navigationBarBackgroundColor": "#0EB584",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/diet/diet_recording",
+      "style": {
+        "navigationBarTitleText": "记录饮食"
+      }
+    },
+    {
+      "path": "pages/diet/diet_records",
       "style": {
         "navigationBarTitleText": "饮食记录"
       }
     },
     {
-      "path": "pages/sport/sport",
+      "path": "pages/sport/sport_recording",
+      "style": {
+        "navigationBarTitleText": "记录运动"
+      }
+    },
+    {
+      "path": "pages/sport/sport_records",
       "style": {
         "navigationBarTitleText": "运动记录"
       }
@@ -24,18 +51,68 @@
       }
     },
     {
-      "path": "pages/group/group",
-      "style": {
-        "navigationBarTitleText": "小组"
-      }
-    },
-    {
       "path": "pages/report/report",
       "style": {
         "navigationBarTitleText": "报告总结"
       }
+    },
+    {
+      "path": "pages/store/store",
+      "style": {
+        "navigationBarTitleText": "商城"
+      }
+    },
+    {
+      "path": "pages/person/person",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/remind/remind",
+      "style": {
+        "navigationBarTitleText": "健康提醒"
+      }
     }
   ],
+  "tabBar": {
+    "color": "#8C8C8C",
+    "selectedColor": "#0EB584",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区",
+        "iconPath": "static/bottom_image/community/community_2.png",
+        "selectedIconPath": "static/bottom_image/community/community_1.png"
+      },
+      {
+        "pagePath": "pages/diet/diet_recording",
+        "text": "记录饮食",
+        "iconPath": "static/bottom_image/diet/diet_1.png",
+        "selectedIconPath": "static/bottom_image/diet/diet_2.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/bottom_image/home/home_2.png",
+        "selectedIconPath": "static/bottom_image/home/home_1.png"
+      },
+      {
+        "pagePath": "pages/sport/sport_recording",
+        "text": "运动",
+        "iconPath": "static/bottom_image/sport/sport_1.png",
+        "selectedIconPath": "static/bottom_image/sport/sport_2.png"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "text": "个人中心",
+        "iconPath": "static/bottom_image/person/person_1.png",
+        "selectedIconPath": "static/bottom_image/person/person_2.png"
+      }
+    ]
+  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "健康监控",

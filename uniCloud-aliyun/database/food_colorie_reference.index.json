@@ -1,0 +1,11 @@
+[
+  {
+    "IndexName": "uk_food_id",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "foodId", "Direction": "1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": true
+    }
+  }
+]

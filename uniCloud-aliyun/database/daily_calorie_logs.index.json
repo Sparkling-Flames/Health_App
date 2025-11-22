@@ -1,0 +1,21 @@
+[
+  {
+    "IndexName": "idx_daily_calorie_user_time",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "userOpenId", "Direction": "1", "Type": "varchar" },
+        { "Name": "consumedAt", "Direction": "-1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": false
+    }
+  },
+  {
+    "IndexName": "idx_daily_calorie_food",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "foodId", "Direction": "1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

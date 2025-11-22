@@ -1,0 +1,139 @@
+{
+  "collections": [
+    {
+      "name": "user_profiles",
+      "comment": "用户基础档案",
+      "schema": {
+        "bsonType": "object",
+        "required": ["openid", "createdAt", "updatedAt", "height", "weight", "calorieTarget"],
+        "properties": {
+          "openid": { "bsonType": "string", "description": "微信 openid" },
+          "nickname": { "bsonType": "string", "maxLength": 50 },
+          "avatar": { "bsonType": "string" },
+          "height": { "bsonType": "double", "minimum": 0 },
+          "weight": { "bsonType": "double", "minimum": 0 },
+          "calorieTarget": { "bsonType": "int", "minimum": 0, "description": "每日卡路里目标" },
+          "createdAt": { "bsonType": "string", "description": "ISO8601 人类可读时间" },
+          "updatedAt": { "bsonType": "string", "description": "ISO8601 人类可读时间" }
+        }
+      },
+      "indexes": [
+        { "name": "uk_openid", "key": { "openid": 1 }, "unique": true }
+      ]
+    },
+    {
+      "name": "posts",
+      "comment": "帖子表（记录发布时间）",
+      "schema": {
+        "bsonType": "object",
+        "required": ["userOpenId", "content", "createdAt"],
+        "properties": {
+          "userOpenId": { "bsonType": "string", "description": "关联 user_profiles.openid" },
+          "content": { "bsonType": "string", "maxLength": 2000 },
+          "media": { "bsonType": "array", "items": { "bsonType": "string" } },
+          "likeCount": { "bsonType": "int", "minimum": 0 },
+          "createdAt": { "bsonType": "string", "description": "发帖时间" },
+          "updatedAt": { "bsonType": "string", "description": "ISO8601 人类可读时间" }
+        }
+      },
+      "indexes": [
+        { "name": "idx_posts_user_createdAt", "key": { "userOpenId": 1, "createdAt": -1 } }
+      ]
+    },
+    {
+      "name": "daily_calorie_logs",
+      "comment": "用户每日卡路里消耗记录",
+      "schema": {
+        "bsonType": "object",
+        "required": ["userOpenId", "foodId", "quantity", "calories", "consumedAt"],
+        "properties": {
+          "userOpenId": { "bsonType": "string", "description": "关联 user_profiles.openid" },
+          "foodId": { "bsonType": "string", "description": "关联 food_calorie_reference.foodId" },
+          "quantity": { "bsonType": "double", "minimum": 0, "description": "食物数量/份数（单位：100g）" },
+          "calories": { "bsonType": "double", "minimum": 0, "description": "本次消耗卡路里（根据数量计算）" },
+          "consumedAt": { "bsonType": "string", "description": "ISO8601 人类可读时间" },
+          "note": { "bsonType": "string", "maxLength": 200 }
+        }
+      },
+      "indexes": [
+        { "name": "idx_daily_calorie_user_time", "key": { "userOpenId": 1, "consumedAt": -1 } },
+        { "name": "idx_daily_calorie_food", "key": { "foodId": 1 } }
+      ]
+    },
+    {
+      "name": "food_calorie_reference",
+      "comment": "食物卡路里参考表",
+      "schema": {
+        "bsonType": "object",
+        "required": ["foodId", "calories", "updatedAt"],
+        "properties": {
+          "foodId": { "bsonType": "string", "description": "食物唯一 ID" },
+          "name": { "bsonType": "string", "maxLength": 100 },
+          "calories": { "bsonType": "double", "minimum": 0, "description": "每单位卡路里" },
+          "unit": { "bsonType": "string", "maxLength": 20, "description": "单位（克/份等）" },
+          "updatedAt": { "bsonType": "string", "description": "ISO8601 人类可读时间" }
+        }
+      },
+      "indexes": [
+        { "name": "uk_food_id", "key": { "foodId": 1 }, "unique": true }
+      ]
+    }
+    {
+      "name": "post_comments",
+      "comment": "帖子评论表（记录评论时间）",
+      "schema": {
+        "bsonType": "object",
+        "required": ["postId", "userOpenId", "content", "createdAt"],
+        "properties": {
+          "postId": { "bsonType": "string", "description": "关联 posts._id" },
+          "userOpenId": { "bsonType": "string", "description": "评论人 openid" },
+          "content": { "bsonType": "string", "maxLength": 1000 },
+          "createdAt": { "bsonType": "string", "description": "评论时间" }
+        }
+      },
+      "indexes": [
+        { "name": "idx_post_comments_post_createdAt", "key": { "postId": 1, "createdAt": -1 } },
+        { "name": "idx_post_comments_user_createdAt", "key": { "userOpenId": 1, "createdAt": -1 } }
+      ]
+    },
+    {
+      "name": "sport_records",
+      "comment": "运动记录表",
+      "schema": {
+        "bsonType": "object",
+        "required": ["userOpenId", "sportType", "distance", "duration", "recordedAt"],
+        "properties": {
+          "userOpenId": { "bsonType": "string", "description": "关联 user_profiles.openid" },
+          "sportType": { "bsonType": "string", "maxLength": 50 },
+          "distance": { "bsonType": "double", "minimum": 0, "description": "公里" },
+          "duration": { "bsonType": "int", "minimum": 0, "description": "分钟" },
+          "calories": { "bsonType": "double", "minimum": 0 },
+          "recordedAt": { "bsonType": "string", "description": "记录时间" }
+        }
+      },
+      "indexes": [
+        { "name": "idx_sport_records_user_recordedAt", "key": { "userOpenId": 1, "recordedAt": -1 } }
+      ]
+    },
+    {
+      "name": "report",
+      "comment": "周期报告",
+      "schema": {
+        "bsonType": "object",
+        "required": ["start", "end", "totalDiet", "totalSport", "content", "clientId", "createdAt"],
+        "properties": {
+          "start": { "bsonType": "long", "description": "周期开始时间戳" },
+          "end": { "bsonType": "long", "description": "周期结束时间戳" },
+          "totalDiet": { "bsonType": "int", "minimum": 0 },
+          "totalSport": { "bsonType": "int", "minimum": 0 },
+          "content": { "bsonType": "string", "maxLength": 2000, "description": "报告正文" },
+          "clientId": { "bsonType": "string" },
+          "createdAt": { "bsonType": "string" }
+        }
+      },
+      "indexes": [
+        { "name": "idx_client_createdAt", "key": { "clientId": 1, "createdAt": -1 } }
+      ]
+    }
+  ]
+}

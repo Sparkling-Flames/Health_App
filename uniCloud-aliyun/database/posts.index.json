@@ -1,0 +1,12 @@
+[
+  {
+    "IndexName": "idx_posts_user_createdAt",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        { "Name": "userOpenId", "Direction": "1", "Type": "varchar" },
+        { "Name": "createdAt", "Direction": "-1", "Type": "varchar" }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]
